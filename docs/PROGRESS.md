@@ -20,6 +20,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `flutter test` -> 1/1 pass.
 - Commit `8a7c3dc feat: add pokemon page entity`.
 - Progress tracker committed in `d9bbfcc`.
+- `lib/domain/entities/pokemon.dart` created by user.
+- `dart analyze lib/domain/entities/pokemon.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -29,8 +32,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 
 1. `lib/domain/entities/pokemon_summary.dart` DONE
 2. `lib/domain/entities/pokemon_page.dart` DONE
-3. `lib/domain/entities/pokemon.dart` NEXT
-4. `lib/domain/repositories/pokemon_catalog_repository.dart`
+3. `lib/domain/entities/pokemon.dart` DONE
+4. `lib/domain/repositories/pokemon_catalog_repository.dart` NEXT
 5. `lib/domain/usecases/fetch_pokemon_page.dart`
 6. `lib/domain/usecases/search_pokemon.dart`
 7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc`
@@ -53,4 +56,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Create `lib/domain/entities/pokemon.dart`. It is required before the repository contract because that contract returns `Future<Pokemon>`. Verify with `dart analyze lib/domain/entities/pokemon.dart` and `flutter test`, then commit.
+Create `lib/domain/repositories/pokemon_catalog_repository.dart`. It declares `fetchPage` and `fetchDetails`. Verify with `dart analyze lib/domain/repositories/pokemon_catalog_repository.dart` and `flutter test`, then commit.
