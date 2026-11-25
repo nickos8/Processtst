@@ -29,6 +29,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/domain/usecases/fetch_pokemon_page.dart` created by user with filename typo `fecth_`, renamed to correct `fetch_`.
 - `dart analyze lib/domain/usecases/fetch_pokemon_page.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `lib/domain/usecases/search_pokemon.dart` created by user.
+- `dart analyze lib/domain/usecases/search_pokemon.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -41,8 +44,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 3. `lib/domain/entities/pokemon.dart` DONE
 4. `lib/domain/repositories/pokemon_catalog_repository.dart` DONE
 5. `lib/domain/usecases/fetch_pokemon_page.dart` DONE
-6. `lib/domain/usecases/search_pokemon.dart` NEXT
-7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc`
+6. `lib/domain/usecases/search_pokemon.dart` DONE
+7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc` NEXT
 8. `lib/data/models/poke_api_page_dto.dart`
 9. `lib/data/datasources/poke_api_service.dart`
 10. `lib/data/repositories/poke_api_catalog_repository.dart`
@@ -62,4 +65,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Create `lib/domain/usecases/search_pokemon.dart`. It calls `fetchDetails(name)` and returns a `PokemonSummary`. Verify with `dart analyze lib/domain/usecases/search_pokemon.dart` and `flutter test`, then commit.
+Edit `pubspec.yaml` to add `http`, `flutter_bloc`, and `bloc`. Run `flutter pub get`, verify with `flutter test`, then commit. These packages are needed before the data service and BLoC files.
