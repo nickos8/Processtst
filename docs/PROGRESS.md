@@ -32,6 +32,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/domain/usecases/search_pokemon.dart` created by user.
 - `dart analyze lib/domain/usecases/search_pokemon.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `pubspec.yaml` updated by user with `http: ^1.6.0`, `flutter_bloc: ^9.1.1`, `bloc: ^9.2.1`.
+- `flutter pub get` resolved `bloc 9.2.2`, `flutter_bloc 9.1.1`, `http 1.6.0`; 8 dependencies changed.
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -45,8 +48,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 4. `lib/domain/repositories/pokemon_catalog_repository.dart` DONE
 5. `lib/domain/usecases/fetch_pokemon_page.dart` DONE
 6. `lib/domain/usecases/search_pokemon.dart` DONE
-7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc` NEXT
-8. `lib/data/models/poke_api_page_dto.dart`
+7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc` DONE
+8. `lib/data/models/poke_api_page_dto.dart` NEXT
 9. `lib/data/datasources/poke_api_service.dart`
 10. `lib/data/repositories/poke_api_catalog_repository.dart`
 11. `lib/presentation/blocs/discover_bloc.dart`
