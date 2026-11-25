@@ -15,12 +15,15 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `dart analyze lib/domain/entities/pokemon_summary.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
 - Commit `16cf817 feat: add pokemon summary entity`.
+- `lib/domain/entities/pokemon_page.dart` created by user.
+- `dart analyze lib/domain/entities/pokemon_page.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Current file order
 
 1. `lib/domain/entities/pokemon_summary.dart` DONE
-2. `lib/domain/entities/pokemon_page.dart` NEXT
-3. `lib/domain/repositories/pokemon_catalog_repository.dart`
+2. `lib/domain/entities/pokemon_page.dart` DONE
+3. `lib/domain/repositories/pokemon_catalog_repository.dart` NEXT
 4. `lib/domain/usecases/fetch_pokemon_page.dart`
 5. `lib/data/models/poke_api_page_dto.dart`
 6. `lib/data/datasources/poke_api_service.dart`
@@ -32,4 +35,4 @@ After this nine-file read slice: detail slice, then collect in memory, then SQLi
 
 ## Next step
 
-Create `lib/domain/entities/pokemon_page.dart`. Verify with `dart analyze lib/domain/entities/pokemon_page.dart` and `flutter test`, then commit.
+Create `lib/domain/repositories/pokemon_catalog_repository.dart`. Verify with `dart analyze lib/domain/repositories/pokemon_catalog_repository.dart` and `flutter test`, then commit.
