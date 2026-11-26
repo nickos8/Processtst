@@ -44,6 +44,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/data/repositories/poke_api_catalog_repository.dart` created by user. `fetchPage` implemented; `fetchDetails` left as `UnimplementedError` stub for Phase 2.
 - `dart analyze lib/data/repositories/poke_api_catalog_repository.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `lib/presentation/blocs/discover_bloc.dart` created by user with page-one load, `Load more`, and `Retry`. Search events deferred to Phase 2.
+- `dart analyze lib/presentation/blocs/discover_bloc.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -61,8 +64,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 8. `lib/data/models/poke_api_page_dto.dart` DONE
 9. `lib/data/datasources/poke_api_service.dart` DONE
 10. `lib/data/repositories/poke_api_catalog_repository.dart` DONE
-11. `lib/presentation/blocs/discover_bloc.dart` NEXT
-12. `lib/presentation/pages/pokemon_discover_page.dart`
+11. `lib/presentation/blocs/discover_bloc.dart` DONE
+12. `lib/presentation/pages/pokemon_discover_page.dart` NEXT
 13. `lib/main.dart`: composition root for this slice
 
 Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and stops when `hasMore` is false.
@@ -77,4 +80,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Create `lib/presentation/blocs/discover_bloc.dart`. It holds the Discover screen state: current `PokemonPage`, loading flag, and error. It calls `FetchPokemonPage` for page one and for `Load more`. Verify with `dart analyze` and `flutter test`, then commit.
+Create `lib/presentation/pages/pokemon_discover_page.dart`. It renders `DiscoverState` with `BlocConsumer`, shows a list, a `Load more` button, and error text. It dispatches `DiscoverStarted`, `LoadMore`, and `Retry`. Verify with `dart analyze` and `flutter test`, then commit.
