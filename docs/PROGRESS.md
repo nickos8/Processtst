@@ -2,7 +2,7 @@
 
 Project: `C:\dev\mini_pokemon_from_zero`
 Branch: `main`
-Local only. No remote writes.
+Remote: `https://github.com/nickos8/Processtst` on `main`. Push-only for backup. No pull, merge, or PR.
 
 Workflow: assistant explains one file, gives complete code, user creates and saves it, assistant verifies, then commit. Do not start the next file until the current one is verified.
 
@@ -54,6 +54,7 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `test/widget_test.dart` replaced with fake-repository smoke test; unused imports removed after analyzer warnings.
 - `dart analyze lib/main.dart test/widget_test.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass: `Discover page shows first Pokemon`.
+- Remote `origin` added as `https://github.com/nickos8/Processtst` for push-only backup.
 
 ## Dependency correction
 
