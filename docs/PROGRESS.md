@@ -47,6 +47,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/presentation/blocs/discover_bloc.dart` created by user with page-one load, `Load more`, and `Retry`. Search events deferred to Phase 2.
 - `dart analyze lib/presentation/blocs/discover_bloc.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `lib/presentation/pages/pokemon_discover_page.dart` created by user as empty placeholder, then filled. Import changed from `package:flutter/material.dart` to `package:material_ui/material_ui.dart` because Flutter flags the former as deprecated in this SDK.
+- `dart analyze lib/presentation/pages/pokemon_discover_page.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -65,8 +68,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 9. `lib/data/datasources/poke_api_service.dart` DONE
 10. `lib/data/repositories/poke_api_catalog_repository.dart` DONE
 11. `lib/presentation/blocs/discover_bloc.dart` DONE
-12. `lib/presentation/pages/pokemon_discover_page.dart` NEXT
-13. `lib/main.dart`: composition root for this slice
+12. `lib/presentation/pages/pokemon_discover_page.dart` DONE
+13. `lib/main.dart`: composition root for this slice NEXT
 
 Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and stops when `hasMore` is false.
 
@@ -80,4 +83,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Create `lib/presentation/pages/pokemon_discover_page.dart`. It renders `DiscoverState` with `BlocConsumer`, shows a list, a `Load more` button, and error text. It dispatches `DiscoverStarted`, `LoadMore`, and `Retry`. Verify with `dart analyze` and `flutter test`, then commit.
+Replace `lib/main.dart` with the composition root for this slice. Build `PokeApiService`, `PokeApiCatalogRepository`, `FetchPokemonPage`, and `DiscoverBloc`. Provide the BLoC with `BlocProvider`, add `DiscoverStarted`, and set `home` to `PokemonDiscoverPage`. Verify with `dart analyze` and `flutter test`, then commit.
