@@ -38,6 +38,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/data/models/poke_api_page_dto.dart` created by user, first saved in `lib/data/`, moved to correct `lib/data/models/` path.
 - `dart analyze lib/data/models/poke_api_page_dto.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `lib/data/datasources/poke_api_service.dart` created by user with `fetchPage` only.
+- `dart analyze lib/data/datasources/poke_api_service.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -53,8 +56,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 6. `lib/domain/usecases/search_pokemon.dart` DONE
 7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc` DONE
 8. `lib/data/models/poke_api_page_dto.dart` DONE
-9. `lib/data/datasources/poke_api_service.dart` NEXT
-10. `lib/data/repositories/poke_api_catalog_repository.dart`
+9. `lib/data/datasources/poke_api_service.dart` DONE
+10. `lib/data/repositories/poke_api_catalog_repository.dart` NEXT
 11. `lib/presentation/blocs/discover_bloc.dart`
 12. `lib/presentation/pages/pokemon_discover_page.dart`
 13. `lib/main.dart`: composition root for this slice
@@ -71,4 +74,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Create `lib/data/datasources/poke_api_service.dart`. It calls the PokéAPI list endpoint with `http`, decodes the body, and returns `PokeApiPageDto`. Verify with `dart analyze` and `flutter test`, then commit.
+Create `lib/data/repositories/poke_api_catalog_repository.dart`. It implements `PokemonCatalogRepository`, calls `PokeApiService.fetchPage`, converts the DTO with `toEntity()`, and returns `PokemonPage`. Implement `fetchDetails` only as a stub for now. Verify with `dart analyze` and `flutter test`, then commit.
