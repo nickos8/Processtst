@@ -1,30 +1,45 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_ui/material_ui.dart';
 
+import 'package:mini_pokemon_from_zero/domain/entities/pokemon.dart';
+import 'package:mini_pokemon_from_zero/domain/entities/pokemon_page.dart';
+import 'package:mini_pokemon_from_zero/domain/entities/pokemon_summary.dart';
+import 'package:mini_pokemon_from_zero/domain/repositories/pokemon_catalog_repository.dart';
+import 'package:mini_pokemon_from_zero/domain/usecases/fetch_pokemon_page.dart';
 import 'package:mini_pokemon_from_zero/main.dart';
+import 'package:mini_pokemon_from_zero/presentation/blocs/discover_bloc.dart';
+
+class _FakeCatalogRepository implements PokemonCatalogRepository {
+  const _FakeCatalogRepository();
+
+  @override
+  Future<PokemonPage> fetchPage({required int offset, int limit = 20}) async {
+    return const PokemonPage(
+      results: [
+        PokemonSummary(
+          name: 'bulbasaur',
+          url: 'https://pokeapi.co/api/v2/pokemon/1/',
+        ),
+      ],
+      hasMore: false,
+    );
+  }
+
+  @override
+  Future<Pokemon> fetchDetails(String name) async {
+    throw UnimplementedError();
+  }
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Discover page shows first Pokemon', (tester) async {
+    final bloc = DiscoverBloc(
+      fetchPage: FetchPokemonPage(const _FakeCatalogRepository()),
+    )..add(const DiscoverStarted());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(MyApp(discoverBloc: bloc));
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('BULBASAUR'), findsOneWidget);
+    expect(find.text('Load more'), findsNothing);
   });
 }

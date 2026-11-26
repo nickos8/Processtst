@@ -50,6 +50,10 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `lib/presentation/pages/pokemon_discover_page.dart` created by user as empty placeholder, then filled. Import changed from `package:flutter/material.dart` to `package:material_ui/material_ui.dart` because Flutter flags the former as deprecated in this SDK.
 - `dart analyze lib/presentation/pages/pokemon_discover_page.dart` -> `No issues found!`
 - `flutter test` -> 1/1 pass.
+- `lib/main.dart` replaced with composition root for the read slice.
+- `test/widget_test.dart` replaced with fake-repository smoke test; unused imports removed after analyzer warnings.
+- `dart analyze lib/main.dart test/widget_test.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass: `Discover page shows first Pokemon`.
 
 ## Dependency correction
 
@@ -69,7 +73,7 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 10. `lib/data/repositories/poke_api_catalog_repository.dart` DONE
 11. `lib/presentation/blocs/discover_bloc.dart` DONE
 12. `lib/presentation/pages/pokemon_discover_page.dart` DONE
-13. `lib/main.dart`: composition root for this slice NEXT
+13. `lib/main.dart`: composition root for this slice DONE
 
 Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and stops when `hasMore` is false.
 
@@ -83,4 +87,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Replace `lib/main.dart` with the composition root for this slice. Build `PokeApiService`, `PokeApiCatalogRepository`, `FetchPokemonPage`, and `DiscoverBloc`. Provide the BLoC with `BlocProvider`, add `DiscoverStarted`, and set `home` to `PokemonDiscoverPage`. Verify with `dart analyze` and `flutter test`, then commit.
+Run the app manually with `flutter run` and confirm real PokéAPI page one loads, `Load more` appends rows, and the button disappears when `hasMore` is false. After that gate passes, start Phase 2 with `lib/data/models/poke_api_dto.dart`.
