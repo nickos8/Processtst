@@ -35,6 +35,9 @@ Workflow: assistant explains one file, gives complete code, user creates and sav
 - `pubspec.yaml` updated by user with `http: ^1.6.0`, `flutter_bloc: ^9.1.1`, `bloc: ^9.2.1`.
 - `flutter pub get` resolved `bloc 9.2.2`, `flutter_bloc 9.1.1`, `http 1.6.0`; 8 dependencies changed.
 - `flutter test` -> 1/1 pass.
+- `lib/data/models/poke_api_page_dto.dart` created by user, first saved in `lib/data/`, moved to correct `lib/data/models/` path.
+- `dart analyze lib/data/models/poke_api_page_dto.dart` -> `No issues found!`
+- `flutter test` -> 1/1 pass.
 
 ## Dependency correction
 
@@ -49,8 +52,8 @@ The original nine-file order assumed `Pokemon`, `SearchPokemon`, `CollectionBloc
 5. `lib/domain/usecases/fetch_pokemon_page.dart` DONE
 6. `lib/domain/usecases/search_pokemon.dart` DONE
 7. `pubspec.yaml`: add `http`, `flutter_bloc`, `bloc` DONE
-8. `lib/data/models/poke_api_page_dto.dart` NEXT
-9. `lib/data/datasources/poke_api_service.dart`
+8. `lib/data/models/poke_api_page_dto.dart` DONE
+9. `lib/data/datasources/poke_api_service.dart` NEXT
 10. `lib/data/repositories/poke_api_catalog_repository.dart`
 11. `lib/presentation/blocs/discover_bloc.dart`
 12. `lib/presentation/pages/pokemon_discover_page.dart`
@@ -68,4 +71,4 @@ Gate for this phase: app shows PokéAPI page one, appends with `Load more`, and 
 
 ## Next step
 
-Edit `pubspec.yaml` to add `http`, `flutter_bloc`, and `bloc`. Run `flutter pub get`, verify with `flutter test`, then commit. These packages are needed before the data service and BLoC files.
+Create `lib/data/datasources/poke_api_service.dart`. It calls the PokéAPI list endpoint with `http`, decodes the body, and returns `PokeApiPageDto`. Verify with `dart analyze` and `flutter test`, then commit.
